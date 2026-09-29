@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Note: Tailwind's preflight already resets margins/padding/box-sizing, so the old
+ * manual `* { margin:0; padding:0 }` reset was removed.
+ * `overflow-x: hidden` is set on <body> ONLY. Setting it on both <html> and <body>
+ * turns <body> into a scroll container and breaks the sticky header.
+ */
+body {
+  background: #020617;
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar         { width: 5px; height: 5px; }
+::-webkit-scrollbar-track   { background: #0f172a; }
+::-webkit-scrollbar-thumb   { background: #334155; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Printing (certificate): hide site chrome, use a white page */
+@media print {
+  header, footer { display: none !important; }
+  body { background: #fff !important; }
+}
